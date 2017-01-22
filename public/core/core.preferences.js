@@ -4,9 +4,13 @@ angular.module('core.preferences',[])
         var option = {
             API_VERSION : '0.1'
         }
+        var userdata = {
+            name: ''
+        }
 
         return {
-            option: option
+            option: option,
+            userdata: userdata
         }
     }
 ]);

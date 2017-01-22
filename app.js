@@ -26,8 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var version = {
     v001 : express.Router(),
     v002 : express.Router(),
-}
-;
+};
 // ver 0.0.1
 version.v001.use('/informations', require('./routes/informations'));
 

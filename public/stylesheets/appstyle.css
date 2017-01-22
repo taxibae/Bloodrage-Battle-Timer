@@ -21,7 +21,17 @@ header h1 {
 
 .index-username h2 {
     color: #CCC;
+    font-weight: bold;
 }
+
+.index-username-input{
+    display: inline-block;
+    margin: auto 16px;
+    vertical-align: middle;
+    text-align: center;
+    width: 150px;
+}
+
 
 .index-list-box{
     background-color: white;

@@ -4,6 +4,7 @@ var app = angular.module('bloodrageBattleTimer', [
     'ngAnimate',
     'ngRoute',
     'ngResource',
+    'ngCookies',
     'ui.bootstrap',
     'btford.socket-io',
 
@@ -19,8 +20,8 @@ var app = angular.module('bloodrageBattleTimer', [
 
 
 
-app.run(['$rootScope', '$window', '$document',
-function($rootScope, $window, $document){
+app.run(['$rootScope', '$window', '$document', '$cookies', 'preferences',
+function($rootScope, $window, $document, $cookies, preferences){
     
     // Window resize Event
     $window.addEventListener('resize',function(event){
@@ -42,6 +43,9 @@ function($rootScope, $window, $document){
             $rootScope.$apply();
         }, 250);
     });
+    // Userdata Initilize
+    preferences.userdata.name = $cookies.get('username') || 'USER NAME';
+    console.log(preferences.userdata.name);
 
 }]);
 
@@ -51,8 +55,6 @@ app.controller('indexController', [
     'preferences',
     'socket',
     function ($scope, api, preferences, socket) {
-        $scope.username = 'USER NAME'
-
         socket.on('isShowNameWorked', function(data){
             $scope.username = data;
         });

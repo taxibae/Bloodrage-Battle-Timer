@@ -3,7 +3,10 @@
 </header>
 
 <div class="index-username">
-    <h2>[ USER NAME ]</h2>
+    <form role="form" ng-submit="$ctrl.changeName()">
+        <h2>[ <input type="text" class="form-control index-username-input" ng-model="$ctrl.username" ng-focus="isNameFocus = true" ng-blur="isNameFocus = false"> ]</h2>
+        <input type="submit" class="btn btn-normal" ng-show="isNameFocus" value="Change">
+    </form>
 </div>
 
 <div class="row">
@@ -15,6 +18,7 @@
             <p>3Player Joined.</p>
         </div>
     </div>
+    <!--
     <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
         <div class="index-list-box">
             <h3>Get Your Blood</h3>
@@ -55,6 +59,7 @@
             <p>3Player Joined.</p>
         </div>
     </div>
+    -->
 </div>
 
 <a href="/about"><h2>About Service.</h2></a>
