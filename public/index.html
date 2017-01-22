@@ -24,9 +24,12 @@
 
         <!--CSS -->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/appstyle.css" />
     </head>
 
     <body ng-controller="indexController">
-        <div ng-view></div ng-view>
+        <div id="app-wrapper">
+            <ng-view></ng-view>
+        </div>
     </body>
 </html>

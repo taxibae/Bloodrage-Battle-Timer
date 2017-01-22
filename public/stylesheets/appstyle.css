@@ -1,0 +1,28 @@
+body {
+    background-color: black;
+}
+#app-wrapper{
+    max-width: 1280px;
+    margin: auto;
+}
+
+header{
+    text-align: center;
+}
+
+header h1 {
+    font-size: 48px;
+    color: #E6E6E6;
+}
+
+.index-username{
+    text-align: center;
+}
+
+.index-username h2 {
+    color: #CCC;
+}
+
+.index-list-box{
+    background-color: white;
+}
