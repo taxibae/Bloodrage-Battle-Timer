@@ -11,6 +11,7 @@ var app = angular.module('bloodrageBattleTimer', [
 
     // Route Components
     'indexMain',
+    'aboutMain',
 
     // Modal Components
 ]);
