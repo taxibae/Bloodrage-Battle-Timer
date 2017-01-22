@@ -5,9 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -24,17 +21,18 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 /* Api Versioning */
 var version = {
-    'v001': express.Router(),
-    'v002': express.Router(),
+    v001 : express.Router(),
+    v002 : express.Router(),
 }
-var api_informations = require('./routes/informations');
+;
 // ver 0.0.1
-version.v001.use('/informations', api_informations);
+version.v001.use('/informations', require('./routes/informations'));
 
 // ver 0.0.1
-version.v002.use('/informations', api_informations);
+version.v002.use('/informations', require('./routes/informations'));
 
 // Set Api Version
 app.use('/api/v0.0.1', version.v001);
@@ -44,10 +42,15 @@ app.use('/api/v0.0.2', version.v002);
 app.use('/api', version.v002);
 
 // HTML5 Route Setting
-app.all('/*', function (req, res) {
-    res.sendFile('index.html', {
-        root: __dirname + "/public"
-    });
+app.all('/*', function (req, res, next) {
+    if(req.app.get('env') === 'development') {
+        next();
+    }
+    else{
+        res.sendFile('index.html', {
+            root: __dirname + "/public"
+        });
+    }
 });
 
 // catch 404 and forward to error handler

@@ -5,6 +5,9 @@
         <base href="/">
         <title>BLOODRAGE BATTLE TIMER</title>
         
+        <!--socket.io-->
+        <script src="/socket.io/socket.io.js"></script>
+        
         <!--angular.js-->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/angular/angular.js"></script>
@@ -12,16 +15,18 @@
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-socket-io/socket.min.js"></script>
         <script src="app.module.js"></script>
         <script src="app.config.js"></script>
         <!--Core Service-->
         <script src="core/core.module.js"></script>
         <script src="core/core.preferences.js"></script>
         <script src="core/core.api.js"></script>
+        <script src="core/core.socket.js"></script>
         <!--Router-->
         <script src="view-index-main/index-main.module.js"></script>
         <script src="view-about-main/about-main.module.js"></script>
-
+        
         <!--CSS -->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/appstyle.css" />
@@ -29,6 +34,7 @@
 
     <body ng-controller="indexController">
         <div id="app-wrapper">
+            {{username}}
             <ng-view></ng-view>
         </div>
     </body>

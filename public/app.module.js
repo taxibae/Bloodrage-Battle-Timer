@@ -5,6 +5,7 @@ var app = angular.module('bloodrageBattleTimer', [
     'ngRoute',
     'ngResource',
     'ui.bootstrap',
+    'btford.socket-io',
 
     // Custom Services
     'core',
@@ -15,6 +16,8 @@ var app = angular.module('bloodrageBattleTimer', [
 
     // Modal Components
 ]);
+
+
 
 app.run(['$rootScope', '$window', '$document',
 function($rootScope, $window, $document){
@@ -46,6 +49,13 @@ app.controller('indexController', [
     '$scope',
     'api',
     'preferences',
-    function ($scope, api, preferences) {
-    
+    'socket',
+    function ($scope, api, preferences, socket) {
+        $scope.username = 'USER NAME'
+
+        socket.on('isShowNameWorked', function(data){
+            $scope.username = data;
+        });
+
+        socket.emit('showNameData', 'Prelude..');
 }]);

@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('bloodrage-battle-timer:server');
 var http = require('http');
+var socketio = require('socket.io')
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,12 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/**
+ * Set Socket io server
+ */
+var io = socketio.listen(server);
+var ioSetting = require('../settings/socketevent').setSocketevent(io);
 
 /**
  * Listen on provided port, on all network interfaces.
