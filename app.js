@@ -25,9 +25,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* Api Versioning */
-// Version 0.1
+var version = {
+    'v001': express.Router(),
+    'v002': express.Router(),
+}
 var api_informations = require('./routes/informations');
-app.use('/api/0.1/informations/', api_informations);
+// ver 0.0.1
+version.v001.use('/informations', api_informations);
+
+// ver 0.0.1
+version.v002.use('/informations', api_informations);
+
+// Set Api Version
+app.use('/api/v0.0.1', version.v001);
+app.use('/api/v0.0.2', version.v002);
+
+// Default Api Version
+app.use('/api', version.v002);
 
 // HTML5 Route Setting
 app.all('/*', function (req, res) {
