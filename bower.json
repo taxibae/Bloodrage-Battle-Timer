@@ -1,0 +1,16 @@
+{
+  "name": "bloodrage-battle-timer",
+  "description": "Boardgame Timer for multi-player",
+  "version": "0.0.1",
+  "homepage": "http://localhost:3000/",
+  "private": true,
+  "dependencies": {
+    "jquery": "2.2.x",
+    "angular": "1.5.x",
+    "angular-animate": "1.5.x",
+    "angular-resource": "1.5.x",
+    "angular-route": "1.5.x",
+    "angular-bootstrap": "^2.1.3",
+    "angular-gettext": "^2.3.8"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="bloodrageBattleTimer">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DoBeDo</title>
+        
+        <!--angular.js-->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="app.module.js"></script>
+        <script src="app.config.js"></script>
+        <!--Core Service-->
+        <script src="core/core.module.js"></script>
+        <script src="core/core.preferences.js"></script>
+        <script src="core/core.api.js"></script>
+        <!--Router-->
+        <script src="view-index-main/index-main.module.js"></script>
+
+        <!--CSS -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+
+    <body ng-controller="indexController">
+        <div ng-view></div ng-view>
+    </body>
+</html>
