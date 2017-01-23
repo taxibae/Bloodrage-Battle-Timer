@@ -2,7 +2,7 @@
 
 angular.module('indexMain', [
     'core',
-    'ngCookies'
+    'ngCookies',
 ]);
 angular.module('indexMain').
 component('indexMain', {
@@ -10,17 +10,34 @@ component('indexMain', {
     controller: [
         '$scope',
         '$cookies',
+        '$uibModal',
         'api',
         'preferences',
-        function indexMainController($scope, $cookies, api, preferences) {
+        'socket',
+        function indexMainController($scope, $cookies, $uibModal, api, preferences, socket) {
             var ctrl = this;
+            // Scope Event
+            $scope.doBlur = function ($event) {
+                if($event.key == 'Enter') {
+                    $event.target.blur();
+                }
+            }
             ctrl.username = preferences.userdata.name;
 
             ctrl.changeName = function(){
                 console.log('changeName');
                 preferences.userdata.name = ctrl.username;
                 $cookies.put('username', ctrl.username);
+                socket.userAction.setUser();
             }
+
+            ctrl.makeroomClicked = function () {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    component: 'makeroomModal',
+                });
+            };
+
         } // Here is end of the Controller.
     ]
 });

@@ -16,6 +16,7 @@ var app = angular.module('bloodrageBattleTimer', [
     'aboutMain',
 
     // Modal Components
+    'makeroomModal'
 ]);
 
 
@@ -54,10 +55,43 @@ app.controller('indexController', [
     'api',
     'preferences',
     'socket',
-    function ($scope, api, preferences, socket) {
-        socket.on('isShowNameWorked', function(data){
-            $scope.username = data;
-        });
+    function ($scope, api, preferences, socket, $uibModal) {
+        
+        /* Socket init */
+        (function (socketinstance, actionName) {
+            socketinstance.on('isShowNameWorked', function (data) {
+                $scope.username = data;
+            });
+            socketinstance.on('connectio', function (data) {
+                $scope.username = data;
+            });
+            socket[actionName] = {
+                setUser: function () {
+                    socketinstance.emit('setuser', {
+                        username: preferences.userdata.name
+                    });
+                },
+                makeRoom: function (room) {
+                    socketinstance.emit('makeroom', {
+                        username: preferences.userdata.name,
+                        title: room.title,
+                        gametype: room.gametype,
+                        player: room.player
+                    });
+                },
+                joinRoom: function () {
+                    socketinstance.emit('joinroom', {
+                        username: preferences.userdata.name,
+                        roomid: '',
+                    });
+                },
+                getRooms: function () {
+                    socketinstance.emit('getroom');
+                }
+            };
+        })(socket, 'userAction');
 
-        socket.emit('showNameData', 'Prelude..');
-}]);
+        // Socket User Initilize
+        socket.userAction.setUser();
+    }
+]);

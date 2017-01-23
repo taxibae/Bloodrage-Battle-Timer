@@ -1,0 +1,36 @@
+<div class="makeroom-wrapper">
+    <h1>Make your game room</h1>
+
+    <div class="makeroom-player">
+        <h2>{{$ctrl.player_number}}</h2>
+        <p>join available.</p>
+        <div class="index-arrow">
+            <div class="index-arrow-left" ng-click="$ctrl.arrowClicked('left')">
+            </div>
+            <div class="index-arrow-right" ng-click="$ctrl.arrowClicked('right')">
+            </div>
+        </div>
+    </div>
+    
+    <form>
+        <div class="form-group">
+            <label for="inputRoomName">Room Name</label>
+            <input type="text" class="form-control" placeholder="Type your room name" ng-model="$ctrl.room_name">
+        </div>
+        <div class="form-group">
+            <label for="inputRoomPasswd">Password</label>
+            <input type="password" class="form-control" placeholder="Type your room password" ng-model="$ctrl.password">
+        </div>
+        <div class="form-group">
+            <label for="inputRoomGame">Game</label>
+            <select class="form-control">
+                <option>Blood Rage</option>
+            </select>
+        </div>
+        <div class="form-group makeroom-button">
+            <button type="submit" class="btn btn-success" ng-click="$ctrl.ok()">Make</button>
+            <button type="button" class="btn btn-warning" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </form>
+
+</div>

@@ -3,10 +3,14 @@
 </header>
 
 <div class="index-username">
-    <form role="form" ng-submit="$ctrl.changeName()">
-        <h2>[ <input type="text" class="form-control index-username-input" ng-model="$ctrl.username" ng-focus="isNameFocus = true" ng-blur="isNameFocus = false"> ]</h2>
-        <input type="submit" class="btn btn-normal" ng-show="isNameFocus" value="Change">
+    <form role="form">
+        <h2>[ <input type="text" class="form-control index-username-input" ng-model="$ctrl.username" ng-blur="$ctrl.changeName()" ng-keyup="doBlur($event)"> ]</h2>
     </form>
+    
+</div>
+
+<div class="index-functions">
+    <button class="btn btn-block btn-primary" type="button" ng-click="$ctrl.makeroomClicked()"> Make Room </button>
 </div>
 
 <div class="row">
@@ -18,48 +22,6 @@
             <p>3Player Joined.</p>
         </div>
     </div>
-    <!--
-    <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
-        <div class="index-list-box">
-            <h3>Get Your Blood</h3>
-            <img ng-src="http://placehold.it/48x48">
-            <p>Blood-rage</p>
-            <p>3Player Joined.</p>
-        </div>
-    </div>
-    <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
-        <div class="index-list-box">
-            <h3>Get Your Blood</h3>
-            <img ng-src="http://placehold.it/48x48">
-            <p>Blood-rage</p>
-            <p>3Player Joined.</p>
-        </div>
-    </div>
-    <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
-        <div class="index-list-box">
-            <h3>Get Your Blood</h3>
-            <img ng-src="http://placehold.it/48x48">
-            <p>Blood-rage</p>
-            <p>3Player Joined.</p>
-        </div>
-    </div>
-    <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
-        <div class="index-list-box">
-            <h3>Get Your Blood</h3>
-            <img ng-src="http://placehold.it/48x48">
-            <p>Blood-rage</p>
-            <p>3Player Joined.</p>
-        </div>
-    </div>
-    <div class="col col-lg-4 col-md-4 col-sm-6 index-list">
-        <div class="index-list-box">
-            <h3>Get Your Blood</h3>
-            <img ng-src="http://placehold.it/48x48">
-            <p>Blood-rage</p>
-            <p>3Player Joined.</p>
-        </div>
-    </div>
-    -->
 </div>
 
 <a href="/about"><h2>About Service.</h2></a>

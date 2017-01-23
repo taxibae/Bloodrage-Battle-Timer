@@ -252,5 +252,4 @@ paket-files/
 *.sln.iml
 
 #ETC
-test/
-dev_music/
+dev_images/

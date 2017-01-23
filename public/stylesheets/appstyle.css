@@ -32,7 +32,76 @@ header h1 {
     width: 150px;
 }
 
+.index-functions{
+    width: 200px;
+    margin: 0 auto;
+}
 
 .index-list-box{
     background-color: white;
+}
+
+/* Modal Component */
+.makeroom-wrapper{
+    margin: 10px 10px;
+}
+.makeroom-wrapper h1 {
+    text-align: center;
+}
+
+.makeroom-player{
+    position: relative;
+}
+.makeroom-player h2{
+    font-size: 64px;
+    text-align: center;
+}
+.makeroom-player p {
+    text-align: center;
+    margin-left: 20%;
+}
+
+.index-arrow-left{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    height: 48px;
+    background: url('../images/arrow-left.png');
+    background-size: cover;
+    opacity: 0.6;
+}
+.index-arrow-right{
+    position: absolute;
+    margin: auto;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    height: 48px;
+    background: url('../images/arrow-right.png');
+    background-size: cover;
+    opacity: 0.6;
+}
+
+.makeroom-button{
+    text-align: center;
+}
+
+/* Media Query*/
+@media all and (min-width: 768px) and (max-width: 1920px){
+    .only-mobile{
+        display: none;
+    }
+}
+
+@media all and (max-width: 767px) {
+    #app-wrapper {
+        margin: 10px;
+    }
+    .modal{
+        margin: 10px;
+    }
 }
