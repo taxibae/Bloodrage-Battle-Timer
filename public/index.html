@@ -18,7 +18,6 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-socket-io/socket.min.js"></script>
         <script src="app.module.js"></script>
-        <script src="app.config.js"></script>
         <!--Core Service-->
         <script src="core/core.module.js"></script>
         <script src="core/core.preferences.js"></script>
@@ -27,6 +26,7 @@
         <!--Router-->
         <script src="view-index-main/index-main.module.js"></script>
         <script src="view-about-main/about-main.module.js"></script>
+        <script src="view-room-main/room-main.module.js"></script>
         <!--Modals-->
         <script src="modal-makeroom/modal-makeroom.module.js"></script>
         
@@ -36,6 +36,21 @@
     </head>
 
     <body ng-controller="indexController">
+        <!--Debug Nav-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Debug Mode</a>
+                    <a class="navbar-brand" ng-click="disconnectClicked()">Force disconnect</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/room/110">Go to Room</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Wrapper-->
         <div id="app-wrapper">
             {{username}}
             <ng-view></ng-view>

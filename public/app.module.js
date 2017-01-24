@@ -14,14 +14,12 @@ var app = angular.module('bloodrageBattleTimer', [
     // Route Components
     'indexMain',
     'aboutMain',
+    'roomMain',
 
     // Modal Components
     'makeroomModal'
-]);
-
-
-
-app.run(['$rootScope', '$window', '$document', '$cookies', 'preferences',
+])
+.run(['$rootScope', '$window', '$document', '$cookies', 'preferences',
 function($rootScope, $window, $document, $cookies, preferences){
     
     // Window resize Event
@@ -48,22 +46,41 @@ function($rootScope, $window, $document, $cookies, preferences){
     preferences.userdata.name = $cookies.get('username') || 'USER NAME';
     console.log(preferences.userdata.name);
 
-}]);
-
-app.controller('indexController', [
+}])
+.config(['$locationProvider' ,'$routeProvider',
+    function config($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode(true);
+    $routeProvider.
+        when('/', {
+            template: '<index-main></index-main>'
+        }).
+        when('/about', {
+            template: '<about-main></about-main>'
+        }).
+        when('/room/:roomId', {
+            template: '<room-main></room-main>'
+        }).
+        otherwise('/');
+    }
+])
+.controller('indexController', [
+    '$rootScope',
     '$scope',
+    '$window',
     'api',
     'preferences',
     'socket',
-    function ($scope, api, preferences, socket, $uibModal) {
+    function ($rootScope, $scope, $window, api, preferences, socket, $uibModal) {
         
         /* Socket init */
         (function (socketinstance, actionName) {
-            socketinstance.on('isShowNameWorked', function (data) {
-                $scope.username = data;
+            socketinstance.on('error', function (data) {
+                console.log(data);
             });
-            socketinstance.on('connectio', function (data) {
-                $scope.username = data;
+            socketinstance.on('getroomExec', function (data) {
+                console.log(data);
+                $rootScope.$broadcast('getroomExec', data);
             });
             socket[actionName] = {
                 setUser: function () {
@@ -71,7 +88,11 @@ app.controller('indexController', [
                         username: preferences.userdata.name
                     });
                 },
+                disconnect: function(){
+                    socketinstance.emit('disconnectuser');
+                },
                 makeRoom: function (room) {
+                    console.log('makeRoom Fired.')
                     socketinstance.emit('makeroom', {
                         username: preferences.userdata.name,
                         title: room.title,
@@ -93,5 +114,16 @@ app.controller('indexController', [
 
         // Socket User Initilize
         socket.userAction.setUser();
+
+        // root event initilize
+        $window.onbeforeunload = function(){
+            socket.userAction.disconnect();
+        }
+
+        // click event 
+        $scope.disconnectClicked = function(){
+            socket.userAction.disconnect();
+            console.log('force disconnect');
+        }
     }
 ]);

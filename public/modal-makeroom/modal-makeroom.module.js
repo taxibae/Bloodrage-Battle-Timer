@@ -17,12 +17,18 @@ angular.module('makeroomModal', [
         function ($scope, api, preferences, socket) {
             var ctrl = this;
             ctrl.player_number = 1;
-            ctrl.room_name;
-            ctrl.passwd;
-
+            ctrl.room_name = '';
+            ctrl.passwd = null;
+            ctrl.game_type= 'Blood Rage';
             ctrl.ok = function () {
+                var data = {
+                    player: ctrl.player_number,
+                    title: ctrl.room_name,
+                    passwd: ctrl.passwd,
+                    gametype: ctrl.game_type
+                };
                 ctrl.close({
-                    $value: 'OkClick'
+                    $value: data
                 });
             };
             ctrl.cancel = function () {

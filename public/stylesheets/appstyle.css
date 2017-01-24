@@ -90,6 +90,45 @@ header h1 {
     text-align: center;
 }
 
+/* room-main */
+.room-infomation{
+    margin: auto;
+    max-width: 720px;
+    display: flex;
+}
+.room-infomation-wrapper{
+    text-align: right;
+    flex: 1;
+}
+.room-infomation-box{
+    margin: auto;
+    padding-right: 14px;
+    max-width:140px;
+    color: white;
+}
+.room-users{
+    margin: auto;
+    max-width: 720px;
+}
+
+.room-player-wrapper{
+    display: flex;
+}
+.room-player-header{
+    background-color: aqua;
+    width: 200px;
+    min-width: 120px;
+}
+.room-player-name{
+    flex: 1;
+    background-color: blanchedalmond;
+}
+.room-startbutton{
+    margin: auto;
+    margin-top: 24px;
+    max-width: 240px;
+}
+
 /* Media Query*/
 @media all and (min-width: 768px) and (max-width: 1920px){
     .only-mobile{

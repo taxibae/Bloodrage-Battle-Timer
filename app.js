@@ -42,14 +42,9 @@ app.use('/api', version.v002);
 
 // HTML5 Route Setting
 app.all('/*', function (req, res, next) {
-    if(req.app.get('env') === 'development') {
-        next();
-    }
-    else{
-        res.sendFile('index.html', {
-            root: __dirname + "/public"
-        });
-    }
+    res.sendFile('index.html', {
+        root: __dirname + "/public"
+    });
 });
 
 // catch 404 and forward to error handler

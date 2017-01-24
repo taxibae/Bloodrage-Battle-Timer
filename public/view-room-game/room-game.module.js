@@ -17,28 +17,18 @@ component('indexMain', {
         function indexMainController($scope, $cookies, $uibModal, api, preferences, socket) {
             var ctrl = this;
             // Scope Event
-            ctrl.username = preferences.userdata.name;
-            ctrl.roomdata = {};
-
             $scope.doBlur = function ($event) {
-                if ($event.key == 'Enter') {
+                if($event.key == 'Enter') {
                     $event.target.blur();
                 }
             }
-            $scope.$on('getroomExec', function(event, data){
-                console.log('event exec');
-                ctrl.roomdata = data;
-            });
+            ctrl.username = preferences.userdata.name;
 
-            ctrl.changeName = function () {
+            ctrl.changeName = function(){
                 console.log('changeName');
                 preferences.userdata.name = ctrl.username;
                 $cookies.put('username', ctrl.username);
                 socket.userAction.setUser();
-            }
-
-            ctrl.refreshClicked = function() {
-                socket.userAction.getRooms();
             }
 
             ctrl.makeroomClicked = function () {
@@ -46,16 +36,7 @@ component('indexMain', {
                     animation: true,
                     component: 'makeroomModal',
                 });
-                modalInstance.result.then(function (data) {
-                    console.log(data);
-                    socket.userAction.makeRoom(data);
-                }, function () {
-                    console.log('Modal dismissed at: ' + new Date());
-                });
             };
-
-            // Loding
-            socket.userAction.getRooms();
 
         } // Here is end of the Controller.
     ]
