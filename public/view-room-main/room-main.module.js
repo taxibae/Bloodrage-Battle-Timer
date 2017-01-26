@@ -21,6 +21,8 @@ angular.module('roomMain', [
                 ctrl.roomdata = preferences.roomdata;
             });
 
+            
+
             // var data = {
             //     player: ctrl.player_number,
             //     title: ctrl.room_name,

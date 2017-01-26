@@ -15,6 +15,7 @@ var app = angular.module('bloodrageBattleTimer', [
     'indexMain',
     'aboutMain',
     'roomMain',
+    'roomGame',
 
     // Modal Components
     'makeroomModal'
@@ -60,6 +61,9 @@ function($rootScope, $window, $document, $cookies, preferences){
         }).
         when('/room/:roomId', {
             template: '<room-main></room-main>'
+        }).
+        when('/room/:roomId/play', {
+            template: '<room-game></room-game>'
         }).
         otherwise('/');
     }
