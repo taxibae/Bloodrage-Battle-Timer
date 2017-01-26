@@ -5,12 +5,15 @@ angular.module('core.preferences',[])
             API_VERSION : '0.1'
         }
         var userdata = {
+            id: '',
             name: ''
         }
+        var roomdata = {};
 
         return {
             option: option,
-            userdata: userdata
+            userdata: userdata,
+            roomdata: roomdata
         }
     }
 ]);

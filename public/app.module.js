@@ -75,24 +75,44 @@ function($rootScope, $window, $document, $cookies, preferences){
         
         /* Socket init */
         (function (socketinstance, actionName) {
-            socketinstance.on('error', function (data) {
+            // Exec interaction
+            socketinstance.on('errorOccured', function (data) {
+                console.log('data of errorOccured');
                 console.log(data);
             });
             socketinstance.on('getroomExec', function (data) {
+                console.log('data of errorOccured');
                 console.log(data);
                 $rootScope.$broadcast('getroomExec', data);
             });
+            socketinstance.on('makeroomExec', function (data) {
+                console.log('data of getroomExec');
+                console.log(data);
+                preferences.roomdata = data;
+                $rootScope.$broadcast('makeroomExec', data);
+            });
+            socketinstance.on('joinroomExec', function (data) {
+                console.log('data of joinroomExec');
+                console.log(data);
+                preferences.roomdata = data;
+                $rootScope.$broadcast('joinroomExec', data);
+            });
+
+            // Status interaction
+            
             socket[actionName] = {
                 setUser: function () {
+                    console.log('setUser Fired.');
                     socketinstance.emit('setuser', {
                         username: preferences.userdata.name
                     });
                 },
                 disconnect: function(){
+                    console.log('disconnect Fired.');
                     socketinstance.emit('disconnectuser');
                 },
                 makeRoom: function (room) {
-                    console.log('makeRoom Fired.')
+                    console.log('makeRoom Fired.');
                     socketinstance.emit('makeroom', {
                         username: preferences.userdata.name,
                         title: room.title,
@@ -100,13 +120,15 @@ function($rootScope, $window, $document, $cookies, preferences){
                         player: room.player
                     });
                 },
-                joinRoom: function () {
+                joinRoom: function (id) {
+                    console.log('joinRoom Fired.');
                     socketinstance.emit('joinroom', {
                         username: preferences.userdata.name,
-                        roomid: '',
+                        roomid: id,
                     });
                 },
                 getRooms: function () {
+                    console.log('getRooms Fired.');
                     socketinstance.emit('getroom');
                 }
             };

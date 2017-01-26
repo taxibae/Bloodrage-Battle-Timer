@@ -1,12 +1,12 @@
 <header>
     <h1> Blood Rage </h1>
-    <h4>Room-ID : X3wwExC123</h4>
+    <h4>Room-ID : {{$ctrl.roomdata.roomid}}</h4>
 </header>
 
 <div class="room-infomation">
     <div class="room-infomation-wrapper">
         <div class="room-infomation-box">
-            <h2>120 sec</h2>
+            <h2>{{$ctrl.roomdata.time}} sec</h2>
             <h4>each player</h4>
         </div>
     </div>
@@ -19,12 +19,12 @@
 </div>
 
 <div class="room-users">
-    <div class="room-player-wrapper">
+    <div class="room-player-wrapper" ng-repeat="p in $ctrl.roomdata.users">
         <div class="room-player-header">
-            <h3>player 1</h3>
+            <h3>Player {{$index + 1}}</h3>
         </div>
         <div class="room-player-name">
-            <h3>Prelude</h3>
+            <h3>{{p.name}}</h3>
         </div>
     </div>
 </div>

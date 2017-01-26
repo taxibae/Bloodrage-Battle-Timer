@@ -3,6 +3,7 @@
 angular.module('indexMain', [
     'core',
     'ngCookies',
+    'ngRoute',
 ]);
 angular.module('indexMain').
 component('indexMain', {
@@ -11,10 +12,11 @@ component('indexMain', {
         '$scope',
         '$cookies',
         '$uibModal',
+        '$location',
         'api',
         'preferences',
         'socket',
-        function indexMainController($scope, $cookies, $uibModal, api, preferences, socket) {
+        function indexMainController($scope, $cookies, $uibModal, $location, api, preferences, socket) {
             var ctrl = this;
             // Scope Event
             ctrl.username = preferences.userdata.name;
@@ -26,10 +28,17 @@ component('indexMain', {
                 }
             }
             $scope.$on('getroomExec', function(event, data){
-                console.log('event exec');
+                console.log('getroom event exec');
                 ctrl.roomdata = data;
             });
-
+            $scope.$on('makeroomExec', function(event, data){
+                console.log('makeroom event exec');
+                $location.path('/room/' + data.roomid)
+            });
+            $scope.$on('joinroomExec', function(event, data){
+                console.log('joinroom event exec');
+                $location.path('/room/' + data.roomid);
+            });
             ctrl.changeName = function () {
                 console.log('changeName');
                 preferences.userdata.name = ctrl.username;
@@ -42,6 +51,7 @@ component('indexMain', {
             }
 
             ctrl.makeroomClicked = function () {
+                socket.userAction.setUser();
                 var modalInstance = $uibModal.open({
                     animation: true,
                     component: 'makeroomModal',
@@ -53,6 +63,10 @@ component('indexMain', {
                     console.log('Modal dismissed at: ' + new Date());
                 });
             };
+            ctrl.joinroomClicked = function(id){
+                socket.userAction.setUser();
+                socket.userAction.joinRoom(id);
+            }
 
             // Loding
             socket.userAction.getRooms();
